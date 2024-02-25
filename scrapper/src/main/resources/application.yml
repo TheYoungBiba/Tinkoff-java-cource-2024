@@ -3,6 +3,8 @@ app:
     enable: true
     interval: 10s
     force-check-delay: 10s
+  git-hub-client-url: ${GIT_HUB_URL}
+  stack-overflow-client-url: ${STACK_OVERFLOW_URL}
 
 spring:
   application:
