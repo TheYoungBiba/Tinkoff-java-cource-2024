@@ -13,7 +13,6 @@ import org.springframework.stereotype.Component;
 public class ListCommand implements Command {
     private InMemoryDatabase databaseConnection;
 
-    @Autowired
     public ListCommand(InMemoryDatabase databaseConnection) {
         this.databaseConnection = databaseConnection;
     }

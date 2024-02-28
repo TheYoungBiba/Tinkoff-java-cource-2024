@@ -12,7 +12,6 @@ public class StartCommand implements Command {
     String botName;
     private InMemoryDatabase databaseConnection;
 
-    @Autowired
     public StartCommand(InMemoryDatabase databaseConnection, String botName) {
         this.databaseConnection = databaseConnection;
         this.botName = botName;

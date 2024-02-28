@@ -26,7 +26,6 @@ public class UntrackCommand implements Command {
     private final String successMessageSingle =
         "Link was successfully removed from tracklist. To see your tracklist send /list";
 
-    @Autowired
     public UntrackCommand(InMemoryDatabase databaseConnection, String botName) {
         this.databaseConnection = databaseConnection;
         this.botName = botName;

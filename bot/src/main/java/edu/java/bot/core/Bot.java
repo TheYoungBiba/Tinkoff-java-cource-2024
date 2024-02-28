@@ -20,7 +20,6 @@ public class Bot implements UpdatesListener {
     private final TelegramBot telegramBot;
     private final UserMessageProcessor processor;
 
-    @Autowired
     public Bot(TelegramBot telegramBot, UserMessageProcessor processor) {
         this.telegramBot = telegramBot;
         this.processor = processor;

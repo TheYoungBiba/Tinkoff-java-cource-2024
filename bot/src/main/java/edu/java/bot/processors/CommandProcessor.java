@@ -13,7 +13,6 @@ public class CommandProcessor implements UserMessageProcessor {
     @Getter
     private List<Command> commands;
 
-    @Autowired
     public CommandProcessor(List<Command> commands) {
         this.commands = commands;
     }

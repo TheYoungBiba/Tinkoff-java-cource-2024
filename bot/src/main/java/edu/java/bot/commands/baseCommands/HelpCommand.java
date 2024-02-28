@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 public class HelpCommand implements Command {
     private List<Command> commands;
 
-    @Autowired
     public HelpCommand(List<Command> commands) {
         this.commands = commands;
     }

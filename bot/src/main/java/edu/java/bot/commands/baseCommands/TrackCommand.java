@@ -31,7 +31,6 @@ public class TrackCommand implements Command {
     private final String successMessageSingle =
         "Link was successfully added in tracklist. To see your tracklist send /list";
 
-    @Autowired
     public TrackCommand(InMemoryDatabase databaseConnection, List<Validator> validators, String botName) {
         this.databaseConnection = databaseConnection;
         this.validators = validators;
