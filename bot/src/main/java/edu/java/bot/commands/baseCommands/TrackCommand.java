@@ -51,22 +51,23 @@ public class TrackCommand implements Command {
     }
 
     @Override
-    @SuppressWarnings("ReturnCount")
     public SendMessage handle(UserContext context) {
         if (databaseConnection.isUserExist(context.userId())) {
             String[] split = context.message().split("(\\n|\\s)+");
             if (split.length == 1) {
                 return new SendMessage(context.chatId(), requestMessage);
             }
+            String response;
             List<URI> tracklist = getTracklist(split, databaseConnection.getUserTracklist(context.userId()));
             databaseConnection.addLinksToUser(context.userId(), tracklist);
             if (tracklist.isEmpty()) {
-                return new SendMessage(context.chatId(), getSupportedLinks());
+                response = getSupportedLinks();
+            } else if (tracklist.size() < split.length - 1) {
+                response = getCombinedResponse(split, tracklist);
+            } else {
+                response = split.length == 2 ? successMessageSingle : successMessageLots;
             }
-            if (tracklist.size() < split.length - 1) {
-                return new SendMessage(context.chatId(), getCombinedResponse(split, tracklist));
-            }
-            return new SendMessage(context.chatId(), split.length == 2 ? successMessageSingle : successMessageLots);
+            return new SendMessage(context.chatId(), response);
         }
         databaseConnection.addUser(context.userId());
         return new SendMessage(context.chatId(),

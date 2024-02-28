@@ -1,12 +1,6 @@
 package edu.java.bot.configuration;
 
 import com.pengrad.telegrambot.TelegramBot;
-import edu.java.bot.commands.Command;
-import edu.java.bot.commands.baseCommands.HelpCommand;
-import edu.java.bot.commands.baseCommands.ListCommand;
-import edu.java.bot.commands.baseCommands.StartCommand;
-import edu.java.bot.commands.baseCommands.TrackCommand;
-import edu.java.bot.commands.baseCommands.UntrackCommand;
 import edu.java.bot.validators.Validator;
 import edu.java.bot.validators.baseValidators.GitHubValidator;
 import edu.java.bot.validators.baseValidators.StackOverflowValidator;
@@ -26,17 +20,6 @@ public class BotConfig {
     @Bean
     String botName(EnvironmentConfig config) {
         return config.telegramName();
-    }
-
-    @Bean
-    List<Command> commands(
-        StartCommand startCommand,
-        HelpCommand helpCommand,
-        TrackCommand trackCommand,
-        UntrackCommand untrackCommand,
-        ListCommand listCommand
-    ) {
-        return List.of(startCommand, helpCommand, trackCommand, untrackCommand, listCommand);
     }
 
     @Bean
