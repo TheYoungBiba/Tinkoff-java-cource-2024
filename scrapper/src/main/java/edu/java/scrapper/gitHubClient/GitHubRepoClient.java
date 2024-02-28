@@ -6,8 +6,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.Optional;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
+import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 
+@Component
 public class GitHubRepoClient {
     @SuppressWarnings("MemberName")
     private final String BASE_BIT_HUB_URL = "https://api.github.com/repos";

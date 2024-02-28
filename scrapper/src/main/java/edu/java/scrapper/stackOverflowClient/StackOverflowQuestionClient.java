@@ -7,8 +7,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.Optional;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
+import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 
+@Component
 public class StackOverflowQuestionClient {
     @SuppressWarnings("MemberName")
     private final String BASE_STACK_OVERFLOW_URL = "https://api.stackexchange.com/2.3/questions";
