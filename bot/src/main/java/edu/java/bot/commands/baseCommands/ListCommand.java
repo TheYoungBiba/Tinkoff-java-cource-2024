@@ -6,7 +6,6 @@ import edu.java.bot.core.UserContext;
 import edu.java.bot.database.InMemoryDatabase;
 import java.net.URI;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
