@@ -6,8 +6,9 @@ import org.springframework.validation.annotation.Validated;
 
 @Validated
 @ConfigurationProperties(prefix = "app", ignoreUnknownFields = false)
-public record ApplicationConfig(
+public record EnvironmentConfig(
     @NotEmpty
-    String telegramToken
-) {
-}
+    String telegramToken,
+    @NotEmpty
+    String telegramName
+) {}
