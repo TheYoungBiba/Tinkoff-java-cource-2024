@@ -1,37 +1,25 @@
 package edu.java.scrapper.api;
 
-import edu.java.scrapper.api.exceptionHandler.ApiException;
-import edu.java.scrapper.database.InMemoryDatabase;
+import edu.java.scrapper.model.DatabaseConnectorService;
 import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @AllArgsConstructor
-@Slf4j
 public class UserApiController implements UserApi {
-    private final ;
+    private final DatabaseConnectorService connectorService;
 
     @Override
     public ResponseEntity<Void> registerUser(long userId) {
-        valid(userId);
-        databaseConnection.addUser(userId);
-        log.info("User " + userId + " has registered");
+        connectorService.registerUser(userId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @Override
     public ResponseEntity<Void> deleteUser(long userId) {
-        valid(userId);
-
+        connectorService.deleteUser(userId);
         return new ResponseEntity<>(HttpStatus.OK);
-    }
-
-    private void valid(long userId) {
-        if (userId < 0) {
-            throw new ApiException(HttpStatus.BAD_REQUEST, "Invalid Telegram user ID");
-        }
     }
 }

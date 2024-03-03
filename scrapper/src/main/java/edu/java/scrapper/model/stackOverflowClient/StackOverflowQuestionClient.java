@@ -1,4 +1,4 @@
-package edu.java.scrapper.stackOverflowClient;
+package edu.java.scrapper.model.stackOverflowClient;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;

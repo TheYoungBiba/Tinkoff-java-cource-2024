@@ -12,9 +12,4 @@ public class ScrapperConfig {
     EnvironmentConfig.Scheduler scheduler(EnvironmentConfig environmentConfig) {
         return environmentConfig.scheduler();
     }
-
-    @Bean
-    InMemoryDatabase databaseConnection() {
-        return new InMemoryDatabase();
-    }
 }
