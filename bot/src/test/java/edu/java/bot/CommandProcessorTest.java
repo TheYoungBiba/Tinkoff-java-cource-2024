@@ -1,18 +1,17 @@
 package edu.java.bot;
 
-import edu.java.bot.commands.Command;
-import edu.java.bot.commands.baseCommands.ListCommand;
-import edu.java.bot.commands.baseCommands.StartCommand;
-import edu.java.bot.commands.baseCommands.TrackCommand;
-import edu.java.bot.commands.baseCommands.UntrackCommand;
-import edu.java.bot.core.UserContext;
+import edu.java.bot.model.commands.Command;
+import edu.java.bot.model.commands.baseCommands.ListCommand;
+import edu.java.bot.model.commands.baseCommands.StartCommand;
+import edu.java.bot.model.commands.baseCommands.TrackCommand;
+import edu.java.bot.model.commands.baseCommands.UntrackCommand;
+import edu.java.bot.model.core.UserContext;
 import edu.java.bot.database.InMemoryDatabase;
-import edu.java.bot.processors.CommandProcessor;
-import edu.java.bot.validators.baseValidators.GitHubValidator;
-import edu.java.bot.validators.baseValidators.StackOverflowValidator;
+import edu.java.bot.model.processors.CommandProcessor;
+import edu.java.bot.model.validators.baseValidators.GitHubValidator;
+import edu.java.bot.model.validators.baseValidators.StackOverflowValidator;
 import org.junit.jupiter.api.Test;
 import java.util.List;
-import java.util.Random;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CommandProcessorTest {

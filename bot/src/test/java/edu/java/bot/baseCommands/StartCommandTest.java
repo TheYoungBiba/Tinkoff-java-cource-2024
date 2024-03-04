@@ -1,8 +1,8 @@
 package edu.java.bot.baseCommands;
 
 import com.pengrad.telegrambot.request.SendMessage;
-import edu.java.bot.commands.baseCommands.StartCommand;
-import edu.java.bot.core.UserContext;
+import edu.java.bot.model.commands.baseCommands.StartCommand;
+import edu.java.bot.model.core.UserContext;
 import edu.java.bot.database.InMemoryDatabase;
 import org.junit.Test;
 import org.junit.jupiter.api.AfterEach;

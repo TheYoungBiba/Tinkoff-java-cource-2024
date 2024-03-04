@@ -1,8 +1,12 @@
 package edu.java.scrapper.database;
 
-import org.springframework.stereotype.Component;
 import java.net.URI;
-import java.util.*;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import org.springframework.stereotype.Component;
 
 @Component
 public class InMemoryDatabase {

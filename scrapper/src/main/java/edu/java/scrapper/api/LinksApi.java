@@ -1,9 +1,9 @@
 package edu.java.scrapper.api;
 
-import edu.java.scrapper.model.DTO.AddLinkRequest;
-import edu.java.scrapper.model.DTO.LinkResponse;
-import edu.java.scrapper.model.DTO.ListLinksResponse;
-import edu.java.scrapper.model.DTO.RemoveLinkRequest;
+import edu.java.DTO.requests.AddLinkRequest;
+import edu.java.DTO.requests.RemoveLinkRequest;
+import edu.java.DTO.resonses.LinkResponse;
+import edu.java.DTO.resonses.ListLinksResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,13 +14,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @RequestMapping("/links")
 public interface LinksApi {
-    @GetMapping
+    @GetMapping(produces = "application/json")
     ResponseEntity<ListLinksResponse> getLinks(@RequestHeader("Tg-Chat-Id") long userId);
 
-    @PostMapping
+    @PostMapping(produces = "application/json", consumes = "application/json")
     ResponseEntity<LinkResponse> addLink(@RequestHeader("Tg-Chat-Id") long userId, @RequestBody AddLinkRequest link);
 
-    @DeleteMapping
+    @DeleteMapping(produces = "application/json", consumes = "application/json")
     ResponseEntity<LinkResponse> deleteLink(
         @RequestHeader("Tg-Chat-Id")
         long userId,

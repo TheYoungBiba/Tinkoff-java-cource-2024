@@ -1,9 +1,9 @@
 package edu.java.bot.configuration;
 
 import com.pengrad.telegrambot.TelegramBot;
-import edu.java.bot.validators.Validator;
-import edu.java.bot.validators.baseValidators.GitHubValidator;
-import edu.java.bot.validators.baseValidators.StackOverflowValidator;
+import edu.java.bot.model.validators.Validator;
+import edu.java.bot.model.validators.baseValidators.GitHubValidator;
+import edu.java.bot.model.validators.baseValidators.StackOverflowValidator;
 import java.util.List;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
