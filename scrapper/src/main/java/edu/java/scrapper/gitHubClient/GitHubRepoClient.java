@@ -1,4 +1,4 @@
-package edu.java.scrapper.model.gitHubClient;
+package edu.java.scrapper.gitHubClient;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;

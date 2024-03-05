@@ -1,13 +1,13 @@
 package edu.java.bot.baseCommands;
 
 import com.pengrad.telegrambot.request.SendMessage;
-import edu.java.bot.model.commands.baseCommands.TrackCommand;
-import edu.java.bot.model.commands.baseCommands.UntrackCommand;
-import edu.java.bot.model.core.UserContext;
+import edu.java.bot.commands.baseCommands.TrackCommand;
+import edu.java.bot.commands.baseCommands.UntrackCommand;
+import edu.java.bot.core.UserContext;
 import edu.java.bot.database.InMemoryDatabase;
-import edu.java.bot.model.validators.Validator;
-import edu.java.bot.model.validators.baseValidators.GitHubValidator;
-import edu.java.bot.model.validators.baseValidators.StackOverflowValidator;
+import edu.java.bot.validators.Validator;
+import edu.java.bot.validators.baseValidators.GitHubValidator;
+import edu.java.bot.validators.baseValidators.StackOverflowValidator;
 import java.net.URI;
 import java.util.Collections;
 import java.util.List;

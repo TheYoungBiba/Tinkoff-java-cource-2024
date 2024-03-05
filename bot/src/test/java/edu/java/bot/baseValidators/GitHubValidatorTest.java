@@ -1,6 +1,6 @@
 package edu.java.bot.baseValidators;
 
-import edu.java.bot.model.validators.baseValidators.GitHubValidator;
+import edu.java.bot.validators.baseValidators.GitHubValidator;
 import org.junit.jupiter.api.Test;
 import java.net.URI;
 import static org.junit.jupiter.api.Assertions.assertFalse;

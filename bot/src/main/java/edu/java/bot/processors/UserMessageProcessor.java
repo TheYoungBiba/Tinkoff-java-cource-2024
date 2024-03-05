@@ -1,8 +1,8 @@
-package edu.java.bot.model.processors;
+package edu.java.bot.processors;
 
 import com.pengrad.telegrambot.request.SendMessage;
-import edu.java.bot.model.commands.Command;
-import edu.java.bot.model.core.UserContext;
+import edu.java.bot.commands.Command;
+import edu.java.bot.core.UserContext;
 import java.util.List;
 
 public interface UserMessageProcessor {

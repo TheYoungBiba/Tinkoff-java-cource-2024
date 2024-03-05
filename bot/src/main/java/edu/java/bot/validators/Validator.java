@@ -1,4 +1,4 @@
-package edu.java.bot.model.validators;
+package edu.java.bot.validators;
 
 import java.net.URI;
 

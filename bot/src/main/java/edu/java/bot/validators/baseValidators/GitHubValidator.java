@@ -1,6 +1,6 @@
-package edu.java.bot.model.validators.baseValidators;
+package edu.java.bot.validators.baseValidators;
 
-import edu.java.bot.model.validators.Validator;
+import edu.java.bot.validators.Validator;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor

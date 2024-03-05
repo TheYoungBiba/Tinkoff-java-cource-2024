@@ -1,4 +1,4 @@
-package edu.java.bot.model.core;
+package edu.java.bot.core;
 
 import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.UpdatesListener;
@@ -9,8 +9,8 @@ import com.pengrad.telegrambot.request.BaseRequest;
 import com.pengrad.telegrambot.request.SendMessage;
 import com.pengrad.telegrambot.request.SetMyCommands;
 import com.pengrad.telegrambot.response.BaseResponse;
-import edu.java.bot.model.commands.Command;
-import edu.java.bot.model.processors.UserMessageProcessor;
+import edu.java.bot.commands.Command;
+import edu.java.bot.processors.UserMessageProcessor;
 import java.util.List;
 import org.springframework.stereotype.Component;
 

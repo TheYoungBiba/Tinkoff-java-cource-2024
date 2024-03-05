@@ -1,10 +1,10 @@
-package edu.java.bot.model.commands.baseCommands;
+package edu.java.bot.commands.baseCommands;
 
 import com.pengrad.telegrambot.request.SendMessage;
+import edu.java.bot.commands.Command;
 import edu.java.bot.database.InMemoryDatabase;
-import edu.java.bot.model.commands.Command;
-import edu.java.bot.model.core.UserContext;
-import edu.java.bot.model.validators.Validator;
+import edu.java.bot.core.UserContext;
+import edu.java.bot.validators.Validator;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.HashSet;
@@ -20,7 +20,7 @@ public class TrackCommand implements Command {
     private List<Validator> validators;
     private String botName;
     private final String requestMessage = """
-            Please send url/links in a message starting with /track
+            Please send link/links in a message starting with /track
             Example:
             /track
             https://example.com/myLink/
@@ -43,7 +43,7 @@ public class TrackCommand implements Command {
 
     @Override
     public String description() {
-        return "add new url/links in tracklist";
+        return "add new link/links in tracklist";
     }
 
     public void addNewValidator(Validator validator) {

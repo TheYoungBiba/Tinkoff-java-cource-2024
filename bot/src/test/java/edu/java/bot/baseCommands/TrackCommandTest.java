@@ -1,12 +1,12 @@
 package edu.java.bot.baseCommands;
 
 import com.pengrad.telegrambot.request.SendMessage;
-import edu.java.bot.model.commands.baseCommands.TrackCommand;
-import edu.java.bot.model.core.UserContext;
+import edu.java.bot.commands.baseCommands.TrackCommand;
+import edu.java.bot.core.UserContext;
 import edu.java.bot.database.InMemoryDatabase;
-import edu.java.bot.model.validators.Validator;
-import edu.java.bot.model.validators.baseValidators.GitHubValidator;
-import edu.java.bot.model.validators.baseValidators.StackOverflowValidator;
+import edu.java.bot.validators.Validator;
+import edu.java.bot.validators.baseValidators.GitHubValidator;
+import edu.java.bot.validators.baseValidators.StackOverflowValidator;
 import java.net.URI;
 import java.util.Collections;
 import java.util.List;
@@ -38,7 +38,7 @@ public class TrackCommandTest {
         SendMessage testResult = trackCommand.handle(testCase);
         String referent = """
             Congratulations, test name! You have registered in test_name_bot.
-            Please send url/links in a message starting with /track
+            Please send link/links in a message starting with /track
             Example:
             /track
             https://example.com/myLink/
@@ -51,7 +51,7 @@ public class TrackCommandTest {
             Arguments.of(
                 "/track",
                 """
-                Please send url/links in a message starting with /track
+                Please send link/links in a message starting with /track
                 Example:
                 /track
                 https://example.com/myLink/

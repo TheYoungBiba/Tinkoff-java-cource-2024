@@ -1,7 +1,7 @@
-package edu.java.bot.model.commands;
+package edu.java.bot.commands;
 
 import com.pengrad.telegrambot.request.SendMessage;
-import edu.java.bot.model.core.UserContext;
+import edu.java.bot.core.UserContext;
 
 @FunctionalInterface
 public interface CommandHandler {

@@ -1,4 +1,4 @@
-package edu.java.scrapper.model.gitHubClient;
+package edu.java.scrapper.gitHubClient;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
