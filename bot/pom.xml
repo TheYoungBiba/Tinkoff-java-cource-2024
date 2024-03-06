@@ -88,7 +88,7 @@
             <version>2.3.0</version>
         </dependency>
         <dependency>
-            <groupId>edu.java.DTO</groupId>
+            <groupId>edu.java</groupId>
             <artifactId>DTO</artifactId>
             <version>0.1</version>
         </dependency>
