@@ -7,7 +7,7 @@ import edu.java.bot.commands.baseCommands.TrackCommand;
 import edu.java.bot.commands.baseCommands.UntrackCommand;
 import edu.java.bot.core.UserContext;
 import edu.java.bot.database.InMemoryDatabase;
-import edu.java.bot.processors.CommandProcessor;
+import edu.java.bot.core.processors.CommandProcessor;
 import edu.java.bot.validators.baseValidators.GitHubValidator;
 import edu.java.bot.validators.baseValidators.StackOverflowValidator;
 import org.junit.jupiter.api.Test;

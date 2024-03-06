@@ -2,8 +2,8 @@ package edu.java.bot.commands.baseCommands;
 
 import com.pengrad.telegrambot.request.SendMessage;
 import edu.java.bot.commands.Command;
-import edu.java.bot.database.InMemoryDatabase;
 import edu.java.bot.core.UserContext;
+import edu.java.bot.database.InMemoryDatabase;
 import java.net.URI;
 import java.util.List;
 import org.springframework.stereotype.Component;

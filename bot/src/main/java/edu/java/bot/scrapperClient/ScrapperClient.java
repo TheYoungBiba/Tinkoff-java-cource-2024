@@ -11,6 +11,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -18,6 +19,8 @@ import org.springframework.web.reactive.function.client.WebClient;
 public class ScrapperClient {
     private String scrapperDefaultUrl = "http://localhost:8080";
     private final WebClient client;
+    private final String linksRequestHeader = "Tg-Chat-Id";
+    private final String linksPath = "/links";
 
     public ScrapperClient() {
         client = WebClient.create(scrapperDefaultUrl);
@@ -38,8 +41,9 @@ public class ScrapperClient {
 
     public Optional<LinkResponse> addLink(long userId, String url) {
         return client.post()
-            .uri("/links")
-            .header("Tg-Chat-Id", String.valueOf(userId))
+            .uri(linksPath)
+            .header(linksRequestHeader, String.valueOf(userId))
+            .contentType(MediaType.APPLICATION_JSON)
             .bodyValue(new AddLinkRequest(url))
             .retrieve()
             .onStatus(
@@ -58,8 +62,9 @@ public class ScrapperClient {
 
     public Optional<LinkResponse> removeLink(long userId, String url) {
         return client.method(HttpMethod.DELETE)
-            .uri("/links")
-            .header("Tg-Chat-Id", String.valueOf(userId))
+            .uri(linksPath)
+            .header(linksRequestHeader, String.valueOf(userId))
+            .contentType(MediaType.APPLICATION_JSON)
             .bodyValue(new RemoveLinkRequest(url))
             .retrieve()
             .onStatus(
@@ -78,8 +83,8 @@ public class ScrapperClient {
 
     public Optional<ListLinksResponse> getTracklist(long userId) {
         return client.get()
-            .uri("/links")
-            .header("Tg-Chat-Id", String.valueOf(userId))
+            .uri(linksPath)
+            .header(linksRequestHeader, String.valueOf(userId))
             .retrieve()
             .onStatus(
                 HttpStatus.BAD_REQUEST::equals,
