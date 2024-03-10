@@ -1,3 +1,5 @@
+--liquibase formatted sql
+--changeset TheYoungBiba:1
 CREATE TABLE links(
     id BIGINT GENERATED ALWAYS AS IDENTITY,
     url TEXT NOT NULL,

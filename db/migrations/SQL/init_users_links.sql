@@ -1,3 +1,5 @@
+--liquibase formatted sql
+--changeset TheYoungBiba:1
 CREATE TABLE users_links(
     user_id BIGINT NOT NULL,
     link_id BIGINT NOT NULL,
