@@ -10,7 +10,7 @@ import com.pengrad.telegrambot.request.SendMessage;
 import com.pengrad.telegrambot.request.SetMyCommands;
 import com.pengrad.telegrambot.response.BaseResponse;
 import edu.java.bot.commands.Command;
-import edu.java.bot.processors.UserMessageProcessor;
+import edu.java.bot.core.processors.UserMessageProcessor;
 import java.util.List;
 import org.springframework.stereotype.Component;
 

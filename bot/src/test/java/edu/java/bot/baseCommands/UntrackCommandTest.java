@@ -95,13 +95,13 @@ public class UntrackCommandTest {
                 /track https://github.com/sanyarnd/tinkoff-java-course-2023/
                 https://stackoverflow.com/questions/1642028/what-is-the-operator-in-c
                 https://unsupportedlink.ru/test
-                invalid/link""",
+                invalid/url""",
                 """
                 /untrack https://github.com/sanyarnd/tinkoff-java-course-2023/
                 https://stackoverflow.com/questions/1642028/what-is-the-operator-in-c
                 https://stackoverflow.com/search?q=unsupported%20link
                 https://unsupportedlink.ru/test
-                invalid/link""",
+                invalid/url""",
                 """
                 Links are removed from tracklist:
                 · https://github.com/sanyarnd/tinkoff-java-course-2023/
@@ -110,7 +110,7 @@ public class UntrackCommandTest {
                 Invalid or unsupported input:
                 · https://stackoverflow.com/search?q=unsupported%20link
                 · https://unsupportedlink.ru/test
-                · invalid/link""",
+                · invalid/url""",
                 List.of(
                     URI.create("https://github.com/sanyarnd/tinkoff-java-course-2023/"),
                     URI.create("https://stackoverflow.com/questions/1642028/what-is-the-operator-in-c")
@@ -121,18 +121,18 @@ public class UntrackCommandTest {
                 """
                 /track https://github.com/sanyarnd/tinkoff-java-course-2023/
                 https://unsupportedlink.ru/test
-                invalid/link""",
+                invalid/url""",
                 """
                 /untrack https://github.com/sanyarnd/tinkoff-java-course-2023/
                 https://unsupportedlink.ru/test
-                invalid/link""",
+                invalid/url""",
                 """
                 Link is removed from tracklist:
                 · https://github.com/sanyarnd/tinkoff-java-course-2023/
                 To see your tracklist send /list
                 Invalid or unsupported input:
                 · https://unsupportedlink.ru/test
-                · invalid/link""",
+                · invalid/url""",
                 List.of(URI.create("https://github.com/sanyarnd/tinkoff-java-course-2023/")),
                 Collections.EMPTY_LIST
             ),
@@ -140,11 +140,11 @@ public class UntrackCommandTest {
                 """
                 /track
                 https://unsupportedlink.ru/test
-                invalid/link""",
+                invalid/url""",
                 """
                 /untrack
                 https://unsupportedlink.ru/test
-                invalid/link""",
+                invalid/url""",
                 "Invalid or unsupported input, check your tracklist with /list",
                 Collections.EMPTY_LIST,
                 Collections.EMPTY_LIST

@@ -81,7 +81,7 @@ public class TrackCommandTest {
                 https://stackoverflow.com/questions/1642028/what-is-the-operator-in-c
                 https://stackoverflow.com/search?q=unsupported%20link
                 https://unsupportedlink.ru/test
-                invalid/link""",
+                invalid/url""",
                 """
                 Links are added in tracklist:
                 · https://github.com/sanyarnd/tinkoff-java-course-2023/
@@ -90,7 +90,7 @@ public class TrackCommandTest {
                 To see all your tracklist send /list
                 Invalid or unsupported input:
                 · https://unsupportedlink.ru/test
-                · invalid/link""",
+                · invalid/url""",
                 List.of(
                     URI.create("https://github.com/sanyarnd/tinkoff-java-course-2023/"),
                     URI.create("https://stackoverflow.com/questions/1642028/what-is-the-operator-in-c"),
@@ -101,21 +101,21 @@ public class TrackCommandTest {
                 """
                 /track https://github.com/sanyarnd/tinkoff-java-course-2023/
                 https://unsupportedlink.ru/test
-                invalid/link""",
+                invalid/url""",
                 """
                 Link is added in tracklist:
                 · https://github.com/sanyarnd/tinkoff-java-course-2023/
                 To see all your tracklist send /list
                 Invalid or unsupported input:
                 · https://unsupportedlink.ru/test
-                · invalid/link""",
+                · invalid/url""",
                 List.of(URI.create("https://github.com/sanyarnd/tinkoff-java-course-2023/"))
             ),
             Arguments.of(
                 """
                 /track
                 https://unsupportedlink.ru/test
-                invalid/link""",
+                invalid/url""",
                 """
                 Bot supports the following resources:
                 github.com

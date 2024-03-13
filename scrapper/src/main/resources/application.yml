@@ -1,6 +1,6 @@
 app:
   scheduler:
-    enable: true
+    enable: false
     interval: 10s
     force-check-delay: 10s
   git-hub-client-url: ${GIT_HUB_URL}
@@ -13,5 +13,13 @@ spring:
 server:
   port: 8080
 
+endpoints:
+  bot: http://localhost:8080
+
 logging:
   config: classpath:log4j2-plain.xml
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    enabled: true

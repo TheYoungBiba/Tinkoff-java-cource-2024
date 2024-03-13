@@ -1,14 +1,18 @@
 package edu.java.scrapper.configuration;
 
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import jakarta.validation.constraints.NotNull;
+import java.time.Duration;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.validation.annotation.Validated;
 
-@Configuration
-@EnableConfigurationProperties(EnvironmentConfig.class)
-public class ScrapperConfig {
-    @Bean
-    EnvironmentConfig.Scheduler scheduler(EnvironmentConfig environmentConfig) {
-        return environmentConfig.scheduler();
+@Validated
+@ConfigurationProperties(prefix = "app", ignoreUnknownFields = false)
+public record ScrapperConfig(
+    @NotNull
+    Scheduler scheduler,
+    String gitHubClientUrl,
+    String stackOverflowClientUrl
+) {
+    public record Scheduler(boolean enable, @NotNull Duration interval, @NotNull Duration forceCheckDelay) {
     }
 }
