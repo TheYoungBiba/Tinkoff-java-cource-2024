@@ -121,6 +121,8 @@
     </dependencies>
 
     <build>
+        <defaultGoal>test</defaultGoal>
+
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -131,7 +133,6 @@
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>${jacoco-maven-plugin.version}</version>
             </plugin>
-
         </plugins>
 
         <pluginManagement>
