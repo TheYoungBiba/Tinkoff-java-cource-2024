@@ -36,3 +36,6 @@ build/
 
 ### Environment ###
 .env
+
+### Database ###
+/db/postgres_data/
