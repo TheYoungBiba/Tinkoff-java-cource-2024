@@ -4,7 +4,7 @@ import edu.java.DTO.requests.AddLinkRequest;
 import edu.java.DTO.requests.RemoveLinkRequest;
 import edu.java.DTO.resonses.LinkResponse;
 import edu.java.DTO.resonses.ListLinksResponse;
-import edu.java.scrapper.model.DatabaseConnectorService;
+import edu.java.scrapper.model.DatabaseConnectorServiceDepricated;
 import java.net.URI;
 import java.util.Random;
 import lombok.AllArgsConstructor;
@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/links")
 @AllArgsConstructor
 public class LinksApiController {
-    private final DatabaseConnectorService connectorService;
+    private final DatabaseConnectorServiceDepricated connectorService;
 
     @PostMapping(produces = "application/json", consumes = "application/json")
     public ResponseEntity<LinkResponse> addLink(

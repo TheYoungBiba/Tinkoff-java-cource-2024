@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 @Slf4j
 @SuppressWarnings("MultipleStringLiterals")
-public class DatabaseConnectorService {
+public class DatabaseConnectorServiceDepricated {
     private final InMemoryDatabase databaseConnection;
 
     public void registerUser(long userId) {

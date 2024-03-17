@@ -14,9 +14,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class IntegrationDBTest extends AbstractIntegrationDBTest {
     @Test
     public void tablesTest() throws SQLException {
-        String testCase = "INSERT INTO users (id, first_name) VALUES (12345678, 'user12345678')";
+        String testCase = "INSERT INTO users VALUES (12345678)";
         long referentId = 12345678;
-        String referentFirstName = "user12345678";
         Connection conn = DriverManager.getConnection(
             POSTGRES.getJdbcUrl(),
             POSTGRES.getUsername(),
@@ -27,8 +26,7 @@ public class IntegrationDBTest extends AbstractIntegrationDBTest {
         ResultSet testResult = statement.executeQuery("SELECT * FROM users WHERE id = 12345678");
         assertAll(
             () -> assertTrue(testResult.next()),
-            () -> assertEquals(referentId, testResult.getInt("id")),
-            () -> assertEquals(referentFirstName, testResult.getString("first_name"))
+            () -> assertEquals(referentId, testResult.getInt("id"))
         );
     }
 }

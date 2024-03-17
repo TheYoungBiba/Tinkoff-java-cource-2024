@@ -1,6 +1,6 @@
 package edu.java.scrapper.api;
 
-import edu.java.scrapper.model.DatabaseConnectorService;
+import edu.java.scrapper.model.DatabaseConnectorServiceDepricated;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/tg-chat/{id}")
 @AllArgsConstructor
 public class UserApiController {
-    private final DatabaseConnectorService connectorService;
+    private final DatabaseConnectorServiceDepricated connectorService;
 
     @PostMapping
     public ResponseEntity<Void> registerUser(@PathVariable("id") long userId) {
