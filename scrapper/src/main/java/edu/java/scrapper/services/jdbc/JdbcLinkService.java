@@ -26,10 +26,7 @@ public class JdbcLinkService implements LinkService {
     @Override
     @Transactional
     public Link add(Long userId, String url) {
-        if (userRepository.find(userId).isEmpty()) {
-            log.info("User " + userId + "does not exist");
-            throw new ResourceNotFoundException("User " + userId + "does not exist");
-        }
+        userCheck(userId);
         Optional<Link> linkOptional = linkRepository.findByUrl(url);
         if (linkOptional.isPresent()) {
             UserLinkRelation relation = new UserLinkRelation(userId, linkOptional.get().ID());
@@ -50,6 +47,7 @@ public class JdbcLinkService implements LinkService {
     @Override
     @Transactional
     public Link remove(Long userId, String url) {
+        userCheck(userId);
         Optional<Link> linkOptional = linkRepository.findByUrl(url);
         if (linkOptional.isEmpty()) {
             log.info("Link: " + url + " does not exist");
@@ -70,6 +68,15 @@ public class JdbcLinkService implements LinkService {
 
     @Override
     public List<Link> listAll(Long userId) {
-        return null;
+        userCheck(userId);
+        List<Long> linksIds = usersLinksRepository.findByUserId(userId);
+        return linkRepository.findAll(linksIds);
+    }
+
+    private void userCheck(Long userId) {
+        if (userRepository.find(userId).isEmpty()) {
+            log.info("User " + userId + "does not exist");
+            throw new ResourceNotFoundException("User " + userId + "does not exist");
+        }
     }
 }

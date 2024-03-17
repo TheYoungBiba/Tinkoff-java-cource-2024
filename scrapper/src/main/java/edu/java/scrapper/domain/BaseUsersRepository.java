@@ -18,7 +18,6 @@ public class BaseUsersRepository implements UserRepository {
         jdbcClient.sql("INSERT INTO users VALUES (?)")
             .param(ID)
             .update();
-        log.info(ID + " added to database");
     }
 
     public List<User> findAll() {
@@ -31,7 +30,6 @@ public class BaseUsersRepository implements UserRepository {
 
     public void remove(Long ID) {
         jdbcClient.sql("DELETE FROM users WHERE id = ?").param(ID).update();
-        log.info("user with id: " + ID + "was deleted from database");
     }
 
     public void dropTable() {

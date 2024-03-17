@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Repository;
 import java.time.OffsetDateTime;
+import java.time.Period;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,7 +20,6 @@ public class BaseLinkRepository implements LinkRepository {
         jdbcClient.sql("INSERT INTO links VALUES (DEFAULT, ?, NULL, NOW())")
             .param(url)
             .update();
-        log.info(url + " added to database");
     }
 
     public Optional<Link> find(Long ID) {
@@ -35,9 +35,13 @@ public class BaseLinkRepository implements LinkRepository {
         return jdbcClient.sql("SELECT * FROM links").query(Link.class).list();
     }
 
+//    public List<Link> findAll(Period period) {
+//        return jdbcClient.sql("SELECT * FROM links WHERE checked_at - NOW() > ?")
+//            .param(OffsetDateTime)
+//    }
+
     public void remove(Long ID) {
         jdbcClient.sql("DELETE FROM links WHERE id = ?").param(ID).update();
-        log.info("link with id: " + ID + "was deleted from database");
     }
 
     public void dropTable() {

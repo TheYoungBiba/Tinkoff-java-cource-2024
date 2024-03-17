@@ -4,10 +4,10 @@ import edu.java.DTO.requests.AddLinkRequest;
 import edu.java.DTO.requests.RemoveLinkRequest;
 import edu.java.DTO.resonses.LinkResponse;
 import edu.java.DTO.resonses.ListLinksResponse;
-import edu.java.scrapper.model.DatabaseConnectorServiceDepricated;
+import edu.java.scrapper.domain.DTO.Link;
 import java.net.URI;
-import java.util.Random;
-import lombok.AllArgsConstructor;
+import edu.java.scrapper.services.LinkService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -20,9 +20,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/links")
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class LinksApiController {
-    private final DatabaseConnectorServiceDepricated connectorService;
+    private final LinkService linkService;
 
     @PostMapping(produces = "application/json", consumes = "application/json")
     public ResponseEntity<LinkResponse> addLink(
@@ -31,10 +31,8 @@ public class LinksApiController {
         @RequestBody
         AddLinkRequest link
     ) {
-        connectorService.addLinkToUser(userId, link.link());
-        return new ResponseEntity<>(
-            new LinkResponse(new Random().nextLong(), URI.create(link.link())), HttpStatus.OK
-        );
+        Link lnk = linkService.add(userId, link.link());
+        return new ResponseEntity<>(new LinkResponse(lnk.ID(), URI.create(lnk.url())), HttpStatus.OK);
     }
 
     @DeleteMapping(produces = "application/json", consumes = "application/json")
@@ -44,14 +42,20 @@ public class LinksApiController {
         @RequestBody
         RemoveLinkRequest link
     ) {
-        connectorService.removeLinkFromUser(userId, link.link());
-        return new ResponseEntity<>(
-            new LinkResponse(new Random().nextLong(), URI.create(link.link())), HttpStatus.OK
-        );
+        Link lnk = linkService.remove(userId, link.link());
+        return new ResponseEntity<>(new LinkResponse(lnk.ID(), URI.create(lnk.url())), HttpStatus.OK);
     }
 
     @GetMapping(produces = "application/json")
     public ResponseEntity<ListLinksResponse> getLinks(@RequestHeader("Tg-Chat-Id") long userId) {
-        return new ResponseEntity<>(connectorService.getListOfLinks(userId), HttpStatus.OK);
+        return new ResponseEntity<>(
+            new ListLinksResponse(
+                linkService.listAll(userId)
+                .stream()
+                .map(link -> new LinkResponse(link.ID(), URI.create(link.url())))
+                .toArray(LinkResponse[]::new)
+            ),
+            HttpStatus.OK
+        );
     }
 }

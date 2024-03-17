@@ -19,7 +19,6 @@ public class BaseUsersLinksRepository implements UsersLinksRepository {
             .param(relation.userId())
             .param(relation.linkId())
             .update();
-        log.info(relation + "added in database");
     }
 
     @Override
@@ -60,7 +59,6 @@ public class BaseUsersLinksRepository implements UsersLinksRepository {
             .param(relation.userId())
             .param(relation.linkId())
             .update();
-        log.info(relation + "was removed from database");
     }
 
     @Override
@@ -68,7 +66,6 @@ public class BaseUsersLinksRepository implements UsersLinksRepository {
         jdbcClient.sql("DELETE FROM users_links WHERE user_id = ?")
             .param(userId)
             .update();
-        log.info("user: " + userId + "was removed from database");
     }
 
     @Override

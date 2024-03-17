@@ -1,5 +1,6 @@
 package edu.java.scrapper.services.jdbc;
 
+import edu.java.DTO.exceptions.InvalidRequestException;
 import edu.java.DTO.exceptions.ResourceNotFoundException;
 import edu.java.scrapper.domain.UserRepository;
 import edu.java.scrapper.domain.UsersLinksRepository;
@@ -20,9 +21,10 @@ public class JdbcUserService implements UserService {
     public void register(Long ID) {
         if (userRepository.find(ID).isEmpty()) {
             userRepository.add(ID);
-            log.info("User" + ID + "registered");
+            log.info("User " + ID + " registered");
         } else {
-            log.info("User " + ID + "already exists");
+            throw new InvalidRequestException("User " + ID + " already exists");
+
         }
     }
 
@@ -34,10 +36,9 @@ public class JdbcUserService implements UserService {
             if (usersLinksRepository.findByUserId(ID).isEmpty()) {
                 usersLinksRepository.removeUser(ID);
             }
-            log.info("User" + ID + "deleted");
+            log.info("User " + ID + " deleted");
         } else {
-            log.info("User " + ID + "does not exist");
-            throw new ResourceNotFoundException("User " + ID + "does not exist");
+            throw new ResourceNotFoundException("User " + ID + " does not exist");
         }
     }
 }
