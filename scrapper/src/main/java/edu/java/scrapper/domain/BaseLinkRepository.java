@@ -6,7 +6,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Repository;
 import java.time.OffsetDateTime;
-import java.time.Period;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,12 +15,21 @@ import java.util.Optional;
 public class BaseLinkRepository implements LinkRepository {
     private final JdbcClient jdbcClient;
 
+    @Override
     public void add(String url) {
         jdbcClient.sql("INSERT INTO links VALUES (DEFAULT, ?, NULL, NOW())")
             .param(url)
             .update();
     }
 
+    public void update(Long linkId, OffsetDateTime updatedAt) {
+        jdbcClient.sql("UPDATE links SET updated_at = ?, checked_at = NOW() WHERE id = ?")
+            .param(updatedAt)
+            .param(linkId)
+            .update();
+    }
+
+    @Override
     public Optional<Link> find(Long ID) {
         return jdbcClient.sql("SELECT * FROM links WHERE id = ?").param(ID).query(Link.class).optional();
     }
@@ -31,19 +39,25 @@ public class BaseLinkRepository implements LinkRepository {
         return jdbcClient.sql("SELECT * FROM links WHERE url = ?").param(url).query(Link.class).optional();
     }
 
+    @Override
     public List<Link> findAll() {
         return jdbcClient.sql("SELECT * FROM links").query(Link.class).list();
     }
 
-//    public List<Link> findAll(Period period) {
-//        return jdbcClient.sql("SELECT * FROM links WHERE checked_at - NOW() > ?")
-//            .param(OffsetDateTime)
-//    }
+    @Override
+    public List<Link> findAll(int countOfDaysUnchecked) {
+        return jdbcClient.sql("SELECT * FROM links WHERE checked_at < (NOW() - INTERVAL ?)")
+            .param(countOfDaysUnchecked + " days")
+            .query(Link.class)
+            .list();
+    }
 
+    @Override
     public void remove(Long ID) {
         jdbcClient.sql("DELETE FROM links WHERE id = ?").param(ID).update();
     }
 
+    @Override
     public void dropTable() {
         jdbcClient.sql("DELETE FROM links").update();
         log.info("table links dropped");

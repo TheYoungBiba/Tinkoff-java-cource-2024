@@ -40,7 +40,7 @@ public class LinkUpdatesService {
         }
     }
 
-    private void userIdsValidator(long[] userIds) {
+    private void userIdsValidator(Long[] userIds) {
         if (Arrays.stream(userIds).anyMatch(userId -> userId < 0)) {
             throw new InvalidRequestException("Invalid userIds");
         }

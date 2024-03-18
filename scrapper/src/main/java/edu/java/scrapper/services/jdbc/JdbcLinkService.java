@@ -3,6 +3,7 @@ package edu.java.scrapper.services.jdbc;
 import edu.java.DTO.exceptions.InvalidRequestException;
 import edu.java.DTO.exceptions.ResourceNotFoundException;
 import edu.java.scrapper.domain.DTO.Link;
+import edu.java.scrapper.domain.DTO.User;
 import edu.java.scrapper.domain.DTO.UserLinkRelation;
 import edu.java.scrapper.domain.LinkRepository;
 import edu.java.scrapper.domain.UserRepository;
@@ -12,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -46,6 +48,13 @@ public class JdbcLinkService implements LinkService {
 
     @Override
     @Transactional
+    public Link update(Long linkId, OffsetDateTime updatedAt) {
+        linkRepository.update(linkId, updatedAt);
+        return linkRepository.find(linkId).get();
+    }
+
+    @Override
+    @Transactional
     public Link remove(Long userId, String url) {
         userCheck(userId);
         Optional<Link> linkOptional = linkRepository.findByUrl(url);
@@ -67,10 +76,32 @@ public class JdbcLinkService implements LinkService {
     }
 
     @Override
+    @Transactional
+    public Link remove(Long linkId) {
+        List<Long> usersWithRemovableLink = usersLinksRepository.findByLinkId(linkId);
+        usersLinksRepository.removeAll(
+            usersWithRemovableLink.stream().map(userId -> new UserLinkRelation(userId, linkId)).toList()
+        );
+        Link link = linkRepository.find(linkId).get();
+        linkRepository.remove(linkId);
+        return link;
+    }
+
+    @Override
     public List<Link> listAll(Long userId) {
         userCheck(userId);
         List<Long> linksIds = usersLinksRepository.findByUserId(userId);
         return linkRepository.findAll(linksIds);
+    }
+
+    @Override
+    public List<Link> listAll(int countOfDaysUnchecked) {
+        return linkRepository.findAll(countOfDaysUnchecked);
+    }
+
+    @Override
+    public List<User> listAllUsers(Long linkId) {
+        return usersLinksRepository.findByLinkId(linkId).stream().map(User::new).toList();
     }
 
     private void userCheck(Long userId) {

@@ -10,6 +10,8 @@ import java.util.Optional;
 public interface LinkRepository {
     void add(String url);
 
+    void update(Long ID, OffsetDateTime updatedAt);
+
     default void addAll(List<String> links) {
         links.forEach(this::add);
     }
@@ -25,6 +27,8 @@ public interface LinkRepository {
         IDs.forEach(id -> find(id).ifPresent(links::add));
         return links;
     }
+
+    List<Link> findAll(int countOfDaysUnchecked);
 
     void remove(Long ID);
 
