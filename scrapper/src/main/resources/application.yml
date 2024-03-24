@@ -1,6 +1,6 @@
 app:
   scheduler:
-    enable: false
+    enable: true
     interval: 10s
     force-check-delay: 10s
   git-hub-client-url: ${GIT_HUB_URL}
@@ -9,6 +9,13 @@ app:
 spring:
   application:
     name: scrapper
+  liquibase:
+    enabled: false
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/scrapper
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
 
 server:
   port: 8080

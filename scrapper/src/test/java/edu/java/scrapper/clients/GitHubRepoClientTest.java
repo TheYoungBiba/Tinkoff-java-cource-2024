@@ -5,6 +5,7 @@ import java.nio.file.Path;
 import java.time.OffsetDateTime;
 import com.github.tomakehurst.wiremock.WireMockServer;
 import com.github.tomakehurst.wiremock.client.WireMock;
+import edu.java.scrapper.gitHubClient.GitHubRepo;
 import edu.java.scrapper.gitHubClient.GitHubRepoClient;
 import edu.java.scrapper.gitHubClient.GitHubRepoResponse;
 import org.junit.jupiter.api.AfterEach;
@@ -47,7 +48,7 @@ public class GitHubRepoClientTest {
             OffsetDateTime.parse("2024-02-18T15:15:10Z"),
             "Java"
         );
-        GitHubRepoResponse testCase = client.fetchRepository(repoOwner, repoName).get();
+        GitHubRepoResponse testCase = client.fetchRepository(new GitHubRepo(repoOwner, repoName)).get();
         assertEquals(testCase, referent);
     }
 
@@ -57,7 +58,7 @@ public class GitHubRepoClientTest {
         String repoName = "Tinkoff-java-cource-2024";
         String invalidJsonResponse = "{invalid response}";
         stubServer(repoOwner, repoName, invalidJsonResponse);
-        assertTrue(client.fetchRepository(repoOwner, repoName).isEmpty());
+        assertTrue(client.fetchRepository(new GitHubRepo(repoOwner, repoName)).isEmpty());
     }
 
     @Test
@@ -66,7 +67,7 @@ public class GitHubRepoClientTest {
         String repoName = "qwerty";
         server.stubFor(get(urlEqualTo(String.format("/%s/%s", repoOwner, repoName)))
                 .willReturn(aResponse().withStatus(HttpStatus.NOT_FOUND.value()).withBody("Not Found")));
-        assertTrue(client.fetchRepository(repoOwner, repoName).isEmpty());
+        assertTrue(client.fetchRepository(new GitHubRepo(repoOwner, repoName)).isEmpty());
     }
 
     @BeforeEach

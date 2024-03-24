@@ -23,10 +23,10 @@ public class GitHubRepoClient {
         client = WebClient.create(baseURL);
     }
 
-    public Optional<GitHubRepoResponse> fetchRepository(String repoOwner, String repoName) {
+    public Optional<GitHubRepoResponse> fetchRepository(GitHubRepo repo) {
         try {
             String json = client.get()
-                .uri("/{owner}/{repo}", repoOwner, repoName)
+                .uri("/{owner}/{repo}", repo.owner(), repo.name())
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .retrieve()
                 .bodyToMono(String.class)

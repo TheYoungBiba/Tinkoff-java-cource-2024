@@ -1,7 +1,7 @@
 package edu.java.scrapper.api;
 
-import edu.java.scrapper.model.DatabaseConnectorService;
-import lombok.AllArgsConstructor;
+import edu.java.scrapper.services.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -12,19 +12,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/tg-chat/{id}")
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class UserApiController {
-    private final DatabaseConnectorService connectorService;
+    private final UserService userService;
 
     @PostMapping
     public ResponseEntity<Void> registerUser(@PathVariable("id") long userId) {
-        connectorService.registerUser(userId);
+        userService.register(userId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @DeleteMapping
     public ResponseEntity<Void> deleteUser(@PathVariable("id") long userId) {
-        connectorService.deleteUser(userId);
+        userService.unregister(userId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }
