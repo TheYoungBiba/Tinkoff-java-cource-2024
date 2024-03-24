@@ -22,7 +22,7 @@ public class BaseLinkUpdater implements LinkUpdater {
     private final StackOverflowQuestionClient stackOverflowQuestionClient;
     private final GitHubRepoClient gitHubRepoClient;
     private final TelegramBotClient telegramBotClient;
-    private final int countOdDaysThatLinkWasWithoutCheck = 3;
+    private final int countOdDaysThatLinkWasWithoutCheck = 0;
 
     @Override
     public void update() {

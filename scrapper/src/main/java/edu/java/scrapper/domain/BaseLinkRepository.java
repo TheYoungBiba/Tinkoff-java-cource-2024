@@ -46,8 +46,8 @@ public class BaseLinkRepository implements LinkRepository {
 
     @Override
     public List<Link> findAll(int countOfDaysUnchecked) {
-        return jdbcClient.sql("SELECT * FROM links WHERE checked_at < (NOW() - INTERVAL ?)")
-            .param(countOfDaysUnchecked + " days")
+        return jdbcClient.sql("SELECT * FROM links WHERE checked_at < (NOW() - INTERVAL '3 days')")
+//            .param(countOfDaysUnchecked + " days")
             .query(Link.class)
             .list();
     }
