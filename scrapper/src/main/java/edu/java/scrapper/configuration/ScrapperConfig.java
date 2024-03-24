@@ -11,8 +11,12 @@ public record ScrapperConfig(
     @NotNull
     Scheduler scheduler,
     String gitHubClientUrl,
-    String stackOverflowClientUrl
+    String stackOverflowClientUrl,
+    AccessType databaseAccessType
 ) {
-    public record Scheduler(boolean enable, @NotNull Duration interval, @NotNull Duration forceCheckDelay) {
+    public record Scheduler(boolean enable, @NotNull Duration interval, @NotNull Duration forceCheckDelay) {}
+
+    public enum AccessType {
+        JDBC, JPA
     }
 }
